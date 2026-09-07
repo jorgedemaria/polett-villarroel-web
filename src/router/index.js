@@ -9,7 +9,7 @@ const routes = [
     component: Home,
     meta: {
       title: 'polett villarroel — arquitecta',
-      description: 'Portafolio de Polett Villarroel, arquitecta especializada en arquitectura, patrimonio y territorio.'
+      description: 'arquitectura, patrimonio y territorio.'
     }
   },
   {
@@ -17,7 +17,7 @@ const routes = [
     component: Portafolio,
     meta: {
       title: 'portafolio — polett villarroel',
-      description: 'Proyectos de arquitectura, rehabilitación y patrimonio de Polett Villarroel.'
+      description: 'proyectos de arquitectura, rehabilitación y patrimonio.'
     }
   },
   {
@@ -25,7 +25,7 @@ const routes = [
     component: Contacto,
     meta: {
       title: 'contacto — polett villarroel',
-      description: 'Contacto profesional de Polett Villarroel, arquitecta.'
+      description: 'contacto, email y número'
     }
   }
 ]

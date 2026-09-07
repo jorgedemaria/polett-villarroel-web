@@ -5,9 +5,7 @@
       :class="visible ? 'opacity-100' : 'opacity-0'"
     >
       <div>
-        <p class="text-lg">
-          alejandra polett villarroel medina,
-        </p>
+        <p class="text-lg">alejandra polett villarroel medina,</p>
         <p class="">madrid</p>
       </div>
       <div class=" ">
@@ -22,23 +20,20 @@
       </div>
       <div class="space-y-1">
         <p>
-          <a
-            href="tel:+34642116584"
-            class=" hover:text-blue-500 transition"
-          >
+          <a href="tel:+34642116584" class="hover:text-blue-500 transition">
             tel: +34 642 11 65 84
           </a>
         </p>
         <p>
           <a
             href="mailto:polettvillarroel@gmail.com"
-            class=" hover:text-blue-500 transition"
+            class="hover:text-blue-500 transition"
           >
             polettvillarroel@gmail.com
           </a>
         </p>
         <p>
-            <a
+          <a
             href="https://www.instagram.com/orillaestudio"
             target="_blank"
             rel="noopener noreferrer"
@@ -56,7 +51,7 @@
       <img
         src="/fotos/contacto.webp"
         alt="Polett Villarroel"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out"
       />
     </div>
   </section>
