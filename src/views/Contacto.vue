@@ -20,7 +20,7 @@
           universidad política de madrid
         </p>
       </div>
-      <div class="">
+      <div class="space-y-1">
         <p>
           <a
             href="tel:+34642116584"
@@ -29,8 +29,14 @@
             tel: +34 642 11 65 84
           </a>
         </p>
-      </div>
-      <div>
+        <p>
+          <a
+            href="mailto:polettvillarroel@gmail.com"
+            class="text-gray-800 hover:text-blue-500 transition"
+          >
+            polettvillarroel@gmail.com
+          </a>
+        </p>
         <p>
           <a
             href="https://www.instagram.com/orillaestudio"
