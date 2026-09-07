@@ -17,7 +17,9 @@
     <footer
       class="container w-full mt-auto pt-8 pb-4 text-right text-xs text-gray-400"
     >
-      orilla estudio · arquitectura, patrimonio y territorio · 2026
+      <span class="font-light"
+        >orilla estudio · arquitectura, patrimonio y territorio · 2026</span
+      >
     </footer>
   </div>
 </template>
@@ -31,8 +33,15 @@
   position: relative;
   display: inline-block;
   padding-bottom: 4px;
+  transition: color 0.2s ease;
 }
 
+.nav-link:not(.router-link-exact-active) {
+  color: oklch(70.4% 0.04 256.788);
+}
+.nav-link:hover {
+  color: #000;
+}
 .nav-link::after {
   content: "";
   position: absolute;
@@ -40,7 +49,7 @@
   left: 50%;
   width: 100%;
   height: 2px;
-  background: oklch(87.2% 0.01 258.338);
+  background: oklch(70.4% 0.04 256.788);
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
   transition: transform 0.06s ease;
@@ -51,19 +60,7 @@
   transform: translateX(-50%) scaleX(1);
 }
 
-.nav-link.router-link-active {
-  color: oklch(44.6% 0.043 257.281);
-}
-
-.nav-link.router-link-active::after {
+.nav-link.router-link-exact-active::after {
   transform: translateX(-50%) scaleX(1);
-}
-
-.brand.router-link-active {
-  color: inherit;
-}
-
-.brand::after {
-  display: none;
 }
 </style>
