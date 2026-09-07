@@ -5,39 +5,42 @@
       :class="visible ? 'opacity-100' : 'opacity-0'"
     >
       <div>
-        <p class="text-lg">alejandra polett villarroel medina,</p>
-        <p class="">madrid</p>
+        <p class="text-lg font-semibold">alejandra polett villarroel medina,</p>
+        <p class="font-light">madrid</p>
       </div>
       <div class=" ">
         <p>
-          arquitecta /
-          <span class="">universidad austral de chile</span>
+          arquitecta,
+          <span class="font-light">universidad austral de chile</span>
         </p>
         <p>
-          m. conservación y restauración del patrimonio arquitectónico /
-          universidad política de madrid
+          m. conservación y restauración del patrimonio arquitectónico, <span class="font-light">
+          universidad política de madrid</span>
         </p>
       </div>
       <div class="space-y-1">
         <p>
-          <a href="tel:+34642116584" class="hover:text-blue-500 transition">
+          ·
+          <a href="tel:+34642116584" class="font-light hover:text-blue-500 transition">
             tel: +34 642 11 65 84
           </a>
         </p>
         <p>
+          ·
           <a
             href="mailto:polettvillarroel@gmail.com"
-            class="hover:text-blue-500 transition"
+            class="font-light hover:text-blue-500 transition"
           >
             polettvillarroel@gmail.com
           </a>
         </p>
         <p>
+          ·
           <a
             href="https://www.instagram.com/orillaestudio"
             target="_blank"
             rel="noopener noreferrer"
-            class="underline hover:text-blue-500 transition"
+            class="underline font-light hover:text-blue-500 transition"
           >
             instagram.com/orillaestudio
           </a>

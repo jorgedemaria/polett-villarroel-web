@@ -14,7 +14,9 @@
       <router-view />
     </main>
 
-    <footer class="container w-full mt-auto pt-8 pb-4 text-right text-xs text-gray-400">
+    <footer
+      class="container w-full mt-auto pt-8 pb-4 text-right text-xs text-gray-400"
+    >
       orilla estudio · arquitectura, patrimonio y territorio · 2026
     </footer>
   </div>
@@ -38,7 +40,7 @@
   left: 50%;
   width: 100%;
   height: 2px;
-  background: #3b82f6;
+  background: oklch(87.2% 0.01 258.338);
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
   transition: transform 0.06s ease;
@@ -50,7 +52,7 @@
 }
 
 .nav-link.router-link-active {
-  color: #3b82f6;
+  color: oklch(44.6% 0.043 257.281);
 }
 
 .nav-link.router-link-active::after {
