@@ -1,12 +1,19 @@
 <template>
   <div class="min-h-screen flex flex-col">
-    <header class="container flex justify-between items-center">
+    <header
+      class="container flex justify-between items-center layout-element"
+      :class="{ 'is-visible': layoutVisible }"
+    >
       <nav class="space-x-6 text-sm">
-        <router-link class="nav-link font-bold brand" to="/"
-          >polett villarroel</router-link
-        >
-        <router-link class="nav-link" to="/portafolio">portafolio</router-link>
-        <router-link class="nav-link" to="/contacto">@</router-link>
+        <router-link class="nav-link font-bold brand" to="/">
+          polett villarroel
+        </router-link>
+
+        <router-link class="nav-link" to="/portafolio">
+          portafolio
+        </router-link>
+
+        <router-link class="nav-link" to="/contacto"> @ </router-link>
       </nav>
     </header>
 
@@ -15,7 +22,8 @@
     </main>
 
     <footer
-      class="container w-full mt-auto pt-8 pb-4 text-right text-xs text-gray-400 max-sm:text-center max-sm:text-[10px]"
+      class="container w-full mt-auto pt-8 pb-4 text-right text-xs text-gray-400 max-sm:text-center max-sm:text-[10px] layout-element"
+      :class="{ 'is-visible': layoutVisible }"
     >
       <span class="font-light">
         orilla estudio · arquitectura, patrimonio y territorio · 2026
@@ -24,9 +32,36 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted } from "vue";
+import { layoutAnimated as layoutVisible } from "./utils/animationState";
+
+onMounted(() => {
+  if (!layoutVisible.value) {
+    requestAnimationFrame(() => {
+      layoutVisible.value = true;
+    });
+  }
+});
+</script>
 
 <style>
+.layout-element {
+  opacity: 0;
+  transform: scale(1.02);
+  transition:
+    opacity 1500ms ease-in-out,
+    transform 1500ms ease-in-out;
+  will-change: opacity, transform;
+}
+
+.layout-element.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* NAV */
+
 .nav-link {
   color: inherit;
   text-decoration: none;
@@ -39,9 +74,11 @@
 .nav-link:not(.router-link-exact-active) {
   color: oklch(70.4% 0.04 256.788);
 }
+
 .nav-link:hover {
   color: #000;
 }
+
 .nav-link::after {
   content: "";
   position: absolute;
