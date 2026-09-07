@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sustituir https://tu-dominio.com por el dominio definitivo antes de publicar. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://tu-dominio.com/</loc>
+  </url>
+  <url>
+    <loc>https://tu-dominio.com/portafolio</loc>
+  </url>
+  <url>
+    <loc>https://tu-dominio.com/contacto</loc>
+  </url>
+</urlset>

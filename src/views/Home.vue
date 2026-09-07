@@ -1,19 +1,34 @@
 <template>
   <section class="min-h-[65vh] flex items-center justify-center">
-    <router-link to="/portafolio">
+    <a href="/portafolio" @click.prevent="goToPortfolio">
       <img
         src="/fotos/home.webp"
         alt="Polett Villarroel"
-        class="max-w-xs w-full h-auto transition-all duration-[1500ms] ease-out cursor-pointer hover:opacity-90"
-        :class="visible ? 'opacity-100' : 'opacity-0'"
+        class="home-image max-w-xs w-full h-auto cursor-pointer"
+        :class="{ 'is-visible': visible, 'is-leaving': leaving }"
       />
-    </router-link>
+    </a>
   </section>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { homeAnimated as visible } from "../utils/animationState";
+
+const router = useRouter();
+const leaving = ref(false);
+
+function goToPortfolio() {
+  if (leaving.value) return;
+
+  requestAnimationFrame(() => {
+    leaving.value = true;
+    window.setTimeout(() => {
+      router.push("/portafolio");
+    }, 450);
+  });
+}
 
 onMounted(() => {
   if (!visible.value) {
@@ -23,3 +38,22 @@ onMounted(() => {
   }
 });
 </script>
+
+<style scoped>
+.home-image {
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 1500ms ease-in-out, transform 1500ms ease-in-out;
+  will-change: opacity, transform;
+}
+
+.home-image.is-visible {
+  opacity: 1;
+}
+
+.home-image.is-leaving {
+  opacity: 0;
+  transform: scale(1.25);
+  transition-duration: 450ms;
+}
+</style>
