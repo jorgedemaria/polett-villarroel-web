@@ -5,7 +5,11 @@
       :class="{ 'is-visible': layoutVisible }"
     >
       <nav class="space-x-6 text-sm">
-        <router-link class="nav-link font-bold brand" to="/">
+        <router-link
+          class="nav-link brand"
+          :class="{ 'brand-home': route.path === '/' }"
+          to="/"
+        >
           polett villarroel
         </router-link>
 
@@ -34,7 +38,10 @@
 
 <script setup>
 import { onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { layoutAnimated as layoutVisible } from "./utils/animationState";
+
+const route = useRoute();
 
 onMounted(() => {
   if (!layoutVisible.value) {
@@ -99,5 +106,20 @@ onMounted(() => {
 
 .nav-link.router-link-exact-active::after {
   transform: translateX(-50%) scaleX(1);
+}
+
+/* BRAND */
+
+.brand {
+  font-size: 0.875rem;
+  font-weight: 700; /* bold */
+
+  transition:
+    font-size 300ms ease,
+    color 200ms ease;
+}
+
+.brand-home {
+  font-size: 1.2rem;
 }
 </style>
