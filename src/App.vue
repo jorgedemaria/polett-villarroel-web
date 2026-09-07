@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="min-h-screen flex flex-col">
     <header class="container flex justify-between items-center">
       <nav class="space-x-6 text-sm">
         <router-link class="nav-link font-bold brand" to="/"
@@ -10,9 +10,13 @@
       </nav>
     </header>
 
-    <main class="container">
+    <main class="container flex-1 w-full">
       <router-view />
     </main>
+
+    <footer class="container w-full mt-auto pt-8 pb-4 text-right text-xs text-gray-400">
+      orilla estudio · arquitectura, patrimonio y territorio · 2026
+    </footer>
   </div>
 </template>
 
@@ -57,7 +61,7 @@
   color: inherit;
 }
 
-.brand.router-link-active::after {
-  background: transparent;
+.brand::after {
+  display: none;
 }
 </style>
