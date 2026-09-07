@@ -226,7 +226,7 @@ onMounted(() => {
 
 .brand {
   font-size: 0.875rem;
-  font-weight: 700; /* bold */
+  font-weight: 600; /* semi bold */
 
   transition:
     font-size 300ms ease,
