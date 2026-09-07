@@ -1,0 +1,71 @@
+<template>
+  <section class="flex flex-col md:flex-row gap-10">
+    <div
+      class="space-y-8 text-sm transition-all duration-[1500ms] ease-out"
+      :class="visible ? 'opacity-100' : 'opacity-0'"
+    >
+      <div>
+        <p class="text-base text-gray-600">
+          alejandra polett villarroel medina
+        </p>
+        <p class="text-gray-600">madrid</p>
+      </div>
+      <div class="space-y-2 text-gray-600">
+        <p>
+          arquitecta /
+          <span class="">universidad austral de chile</span>
+        </p>
+        <p>
+          m. conservación y restauración del patrimonio arquitectónico /
+          universidad política de madrid
+        </p>
+      </div>
+      <div class="">
+        <p>
+          <a
+            href="tel:+34642116584"
+            class="text-gray-800 hover:text-blue-500 transition"
+          >
+            tel: +34 642 11 65 84
+          </a>
+        </p>
+      </div>
+      <div>
+        <p>
+          <a
+            href="https://www.instagram.com/orillaestudio"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline hover:text-blue-500 transition"
+          >
+            instagram.com/orillaestudio
+          </a>
+        </p>
+      </div>
+    </div>
+    <div
+      class="md:ml-auto md:w-1/4 transition-all duration-[1500ms] ease-out delay-200"
+      :class="visible ? 'opacity-100' : 'opacity-0'"
+    >
+      <img
+        src="/fotos/contacto.png"
+        alt="Polett Villarroel"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </section>
+</template>
+
+<script setup>
+import { ref, onMounted } from "vue";
+
+const visible = ref(false);
+
+onMounted(() => {
+  requestAnimationFrame(() => {
+    visible.value = true;
+  });
+});
+</script>
+
+<style scoped></style>
