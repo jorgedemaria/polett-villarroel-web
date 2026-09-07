@@ -15,11 +15,11 @@
     </main>
 
     <footer
-      class="container w-full mt-auto pt-8 pb-4 text-right text-xs text-gray-400"
+      class="container w-full mt-auto pt-8 pb-4 text-right text-xs text-gray-400 max-sm:text-center max-sm:text-[10px]"
     >
-      <span class="font-light"
-        >orilla estudio · arquitectura, patrimonio y territorio · 2026</span
-      >
+      <span class="font-light">
+        orilla estudio · arquitectura, patrimonio y territorio · 2026
+      </span>
     </footer>
   </div>
 </template>
