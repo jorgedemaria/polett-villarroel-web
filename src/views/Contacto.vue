@@ -20,13 +20,11 @@
       </div>
       <div class="space-y-1">
         <p>
-          
           <a href="tel:+34642116584" class="hover:text-blue-500 transition">
             tel: +34 642 11 65 84
           </a>
         </p>
         <p>
-          
           <a
             href="mailto:polettvillarroel@gmail.com"
             class="hover:text-blue-500 transition"
@@ -35,7 +33,6 @@
           </a>
         </p>
         <p>
-          
           <a
             href="https://www.instagram.com/orillaestudio"
             target="_blank"
@@ -48,13 +45,13 @@
       </div>
     </div>
     <div
-      class="md:ml-auto md:w-1/4 transition-all duration-[1500ms] ease-out delay-200"
+      class="w-3/5 md:ml-auto md:w-1/4 transition-all duration-[1500ms] ease-out delay-200"
       :class="visible ? 'opacity-100' : 'opacity-0'"
     >
       <img
         src="/fotos/contacto.webp"
         alt="Polett Villarroel"
-        class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out"
+        class="w-full h-auto max-h-[100vh] md:h-full md:max-h-none object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out"
       />
     </div>
   </section>
