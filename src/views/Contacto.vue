@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-col md:flex-row gap-10">
     <div
-      class="space-y-8 text-sm transition-all duration-[1500ms] ease-out"
+      class="space-y-12 text-sm transition-all duration-[1500ms] ease-out"
       :class="visible ? 'opacity-100' : 'opacity-0'"
     >
       <div>
@@ -14,33 +14,33 @@
           <span class="font-light">universidad austral de chile</span>
         </p>
         <p>
-          m. conservación y restauración del patrimonio arquitectónico, <span class="font-light">
-          universidad política de madrid</span>
+          m. conservación y restauración del patrimonio arquitectónico,
+          <span class="font-light"> universidad política de madrid</span>
         </p>
       </div>
       <div class="space-y-1">
         <p>
-          ·
-          <a href="tel:+34642116584" class="font-light hover:text-blue-500 transition">
+          
+          <a href="tel:+34642116584" class="hover:text-blue-500 transition">
             tel: +34 642 11 65 84
           </a>
         </p>
         <p>
-          ·
+          
           <a
             href="mailto:polettvillarroel@gmail.com"
-            class="font-light hover:text-blue-500 transition"
+            class="hover:text-blue-500 transition"
           >
             polettvillarroel@gmail.com
           </a>
         </p>
         <p>
-          ·
+          
           <a
             href="https://www.instagram.com/orillaestudio"
             target="_blank"
             rel="noopener noreferrer"
-            class="underline font-light hover:text-blue-500 transition"
+            class="underline hover:text-blue-500 transition"
           >
             instagram.com/orillaestudio
           </a>
