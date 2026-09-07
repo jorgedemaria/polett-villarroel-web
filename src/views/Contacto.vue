@@ -5,12 +5,12 @@
       :class="visible ? 'opacity-100' : 'opacity-0'"
     >
       <div>
-        <p class="text-base text-gray-600">
-          alejandra polett villarroel medina
+        <p class="text-lg">
+          alejandra polett villarroel medina,
         </p>
-        <p class="text-gray-600">madrid</p>
+        <p class="">madrid</p>
       </div>
-      <div class="space-y-2 text-gray-600">
+      <div class=" ">
         <p>
           arquitecta /
           <span class="">universidad austral de chile</span>
@@ -24,7 +24,7 @@
         <p>
           <a
             href="tel:+34642116584"
-            class="text-gray-800 hover:text-blue-500 transition"
+            class=" hover:text-blue-500 transition"
           >
             tel: +34 642 11 65 84
           </a>
@@ -32,13 +32,13 @@
         <p>
           <a
             href="mailto:polettvillarroel@gmail.com"
-            class="text-gray-800 hover:text-blue-500 transition"
+            class=" hover:text-blue-500 transition"
           >
             polettvillarroel@gmail.com
           </a>
         </p>
         <p>
-          <a
+            <a
             href="https://www.instagram.com/orillaestudio"
             target="_blank"
             rel="noopener noreferrer"
@@ -63,14 +63,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-
-const visible = ref(false);
+import { onMounted } from "vue";
+import { contactoAnimated as visible } from "../utils/animationState";
 
 onMounted(() => {
-  requestAnimationFrame(() => {
-    visible.value = true;
-  });
+  if (!visible.value) {
+    requestAnimationFrame(() => {
+      visible.value = true;
+    });
+  }
 });
 </script>
 

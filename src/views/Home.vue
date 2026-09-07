@@ -12,13 +12,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-
-const visible = ref(false);
+import { onMounted } from "vue";
+import { homeAnimated as visible } from "../utils/animationState";
 
 onMounted(() => {
-  requestAnimationFrame(() => {
-    visible.value = true;
-  });
+  if (!visible.value) {
+    requestAnimationFrame(() => {
+      visible.value = true;
+    });
+  }
 });
 </script>
