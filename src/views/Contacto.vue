@@ -48,7 +48,7 @@
       :class="visible ? 'opacity-100' : 'opacity-0'"
     >
       <img
-        src="/fotos/contacto.png"
+        src="/fotos/contacto.webp"
         alt="Polett Villarroel"
         class="w-full h-full object-cover"
       />
