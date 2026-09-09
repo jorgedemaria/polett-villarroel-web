@@ -13,19 +13,21 @@ const routes = [
     }
   },
   {
+    // flipbook propio (StPageFlip)
     path: '/portafolio',
-    component: Portafolio,
+    component: () => import('../views/PortafolioBeta.vue'),
     meta: {
       title: 'portafolio — polett villarroel',
       description: 'proyectos de arquitectura, rehabilitación y patrimonio.'
     }
   },
   {
-    // ruta oculta (no enlazada en el nav) para probar el flipbook propio
-    path: '/portafolio-beta',
-    component: () => import('../views/PortafolioBeta.vue'),
+    // Heyzine: ya no está enlazado en el nav, se deja accesible en una
+    // dirección oculta por si se necesita volver a él
+    path: '/portafolio-heyzine',
+    component: Portafolio,
     meta: {
-      title: 'portafolio (beta) — polett villarroel',
+      title: 'portafolio — polett villarroel',
       description: 'proyectos de arquitectura, rehabilitación y patrimonio.'
     }
   },
