@@ -21,6 +21,15 @@ const routes = [
     }
   },
   {
+    // ruta oculta (no enlazada en el nav) para probar el flipbook propio
+    path: '/portafolio-beta',
+    component: () => import('../views/PortafolioBeta.vue'),
+    meta: {
+      title: 'portafolio (beta) — polett villarroel',
+      description: 'proyectos de arquitectura, rehabilitación y patrimonio.'
+    }
+  },
+  {
     path: '/contacto',
     component: Contacto,
     meta: {
