@@ -2,7 +2,7 @@
   <section
     ref="wrapEl"
     class="pb-wrap"
-    :class="{ 'is-visible': pageVisible }"
+    :class="{ 'is-visible': pageVisible, 'is-single': view === 'single' }"
   >
     <!-- vista página/pliego + zoom + pantalla completa + descargar: una sola
          fila normal (sin superponerse al libro): vista a la izquierda,
@@ -119,7 +119,10 @@
       </div>
     </div>
 
-    <div class="pb-book-area" :class="{ 'is-zoomed': zoom > 1 }">
+    <div
+      class="pb-book-area"
+      :class="{ 'is-zoomed': zoom > 1, 'is-loading': !ready }"
+    >
       <div
         v-if="!ready"
         class="loading-indicator"
@@ -139,10 +142,6 @@
       <button class="pb-btn" @click="next" :disabled="page >= pageCount - 1">
         ›
       </button>
-
-      <span v-if="!preloadDone" class="pb-preload">
-        precargando {{ preloadLoaded }}/{{ PORTAFOLIO_TOTAL }}
-      </span>
     </div>
   </section>
 </template>
@@ -154,8 +153,6 @@ import {
   PORTAFOLIO_TOTAL,
   portafolioPageUrl,
   preloadPortafolioRest,
-  preloadLoaded,
-  preloadDone,
 } from "../utils/portafolioPreload";
 import { portafolioAnimated as pageVisible } from "../utils/animationState";
 
@@ -163,6 +160,9 @@ const VIEW_KEY = "pb-view-mode";
 const EAGER_PAGES = 12; // el resto se cargan en diferido / vía precarga de fondo
 // ancho CSS máx. por página según modo (súbelo para ver más detalle)
 const MAX_PAGE_WIDTH = { spread: 620, single: 780 };
+// en pantalla completa el libro debe crecer, no quedarse en el tamaño de
+// escritorio normal
+const MAX_PAGE_WIDTH_FULLSCREEN = { spread: 900, single: 1200 };
 const ZOOM_MIN = 1;
 const ZOOM_MAX = 2.5;
 const ZOOM_STEP = 0.25;
@@ -301,6 +301,7 @@ async function build() {
   hostEl.value.appendChild(mountEl);
 
   const single = view.value === "single";
+  const widths = isFullscreen.value ? MAX_PAGE_WIDTH_FULLSCREEN : MAX_PAGE_WIDTH;
 
   pageFlip = new PageFlip(mountEl, {
     // width/height solo definen la proporción de página en modo "stretch"
@@ -311,7 +312,7 @@ async function build() {
     // minWidth enorme en "1 página" fuerza página simple a cualquier ancho;
     // en "pliego" el valor normal decide 1/2 páginas según el ancho disponible
     minWidth: single ? 100000 : 315,
-    maxWidth: single ? MAX_PAGE_WIDTH.single : MAX_PAGE_WIDTH.spread,
+    maxWidth: single ? widths.single : widths.spread,
     minHeight: 441,
     maxHeight: 2000,
     showCover: true,
@@ -412,7 +413,11 @@ function fsElement() {
 function onFullscreenChange() {
   isFullscreen.value = fsElement() === wrapEl.value;
   zoom.value = 1; // el ancho disponible cambia mucho al entrar/salir
-  scheduleUpdates(); // StPageFlip debe recalcular el tamaño de página
+  // maxWidth es un valor fijo al construir el PageFlip (no se puede cambiar
+  // en caliente), así que hay que reconstruirlo para que el libro realmente
+  // crezca al entrar a pantalla completa (y vuelva a achicarse al salir)
+  pendingJump = page.value;
+  build();
 }
 
 async function toggleFullscreen() {
@@ -500,30 +505,55 @@ onBeforeUnmount(() => {
 }
 
 /* pantalla completa: la propia API ya pone el elemento a tamaño de viewport;
-   mantenemos el mismo fondo del sitio (la sombra del libro se sigue viendo)
-   y le damos más margen a las páginas */
+   mantenemos el mismo fondo del sitio (la sombra del libro se sigue viendo),
+   centramos todo y le damos bastante margen a los lados para que los
+   controles no queden pegados al borde de la pantalla */
 .pb-wrap:fullscreen,
 .pb-wrap:-webkit-full-screen {
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: 3rem clamp(1.5rem, 6vw, 6rem);
   background: #fbfbfb;
 }
+
+/* el libro debe crecer en pantalla completa, no quedarse en el tamaño de
+   escritorio normal — estos valores deben coincidir con
+   MAX_PAGE_WIDTH_FULLSCREEN (2× para el pliego, porque son dos páginas) */
 .pb-wrap:fullscreen .pb-book,
 .pb-wrap:-webkit-full-screen .pb-book {
-  max-width: 1700px;
+  max-width: 1800px;
 }
 .pb-wrap:fullscreen .pb-book.is-single,
 .pb-wrap:-webkit-full-screen .pb-book.is-single {
-  max-width: 1100px;
+  max-width: 1200px;
+}
+
+/* los controles acompañan el ancho del libro en vez de estirarse hasta el
+   borde real de la pantalla */
+.pb-wrap:fullscreen .pb-controls,
+.pb-wrap:-webkit-full-screen .pb-controls {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+.pb-wrap.is-single:fullscreen .pb-controls,
+.pb-wrap.is-single:-webkit-full-screen .pb-controls {
+  max-width: 1200px;
 }
 
 .pb-book-area {
   position: relative;
   width: 100%;
   max-width: 100%;
-  min-height: 52vh;
   /* deja aire alrededor para la sombra y la pila de hojas */
   padding: 0 22px;
+}
+
+/* min-height solo mientras carga (para el spinner): una vez montado, el
+   área toma la altura real del libro. Si quedara fija, en "pliego" dentro
+   de una pantalla angosta (donde el pliego da páginas chicas) sobraba un
+   hueco vacío pensado para "página" (más alta). */
+.pb-book-area.is-loading {
+  min-height: 52vh;
 }
 
 /* con zoom > 100% el área se vuelve scrolleable para poder pasear la página */
@@ -748,12 +778,6 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-}
-
-.pb-preload {
-  margin-left: 0.5rem;
-  font-variant-numeric: tabular-nums;
-  opacity: 0.7;
 }
 
 .loading-indicator {
